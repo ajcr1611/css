@@ -1,0 +1,193 @@
+/* RESET DE FUENTES E IMPORTACIONES */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Kalam:wght@700&display=swap');
+
+/* --- CONTENEDOR PRINCIPAL --- */
+#job-board-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start; /* Alineación superior */
+  gap: 40px;
+  padding: 50px 20px;
+  background: transparent;
+  font-family: 'Montserrat', sans-serif;
+  /* Variables Globales para Ajuste Perfecto */
+  --line-height: 32px; 
+  --font-size: 16px; /* Fijo para evitar desajustes */
+  --paper-width: 380px;
+}
+
+/* --- ESTILOS DE LAS HOJAS (NOTAS) --- */
+#job-board-container .paper-sheet {
+  width: 100%;
+  max-width: var(--paper-width);
+  min-height: 500px;
+  background-color: #fff;
+  position: relative;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.15);
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+#job-board-container .paper-sheet:hover {
+  transform: scale(1.02) rotate(0deg) !important;
+  z-index: 10;
+}
+
+/* Colores de Notas */
+#job-board-container .sheet-blue { background-color: #f0f4f8; }
+#job-board-container .sheet-cream { background-color: #fffdf0; }
+
+/* Rotaciones */
+#job-board-container .rotate-left { transform: rotate(-2deg); }
+#job-board-container .rotate-right { transform: rotate(2deg); margin-top: 20px; }
+
+/* --- ENCABEZADO Y PERFORACIONES --- */
+#job-board-container .sheet-header {
+  position: relative;
+  padding-bottom: 10px;
+}
+
+#job-board-container .holes-row {
+  height: 50px;
+  background-image: 
+    radial-gradient(circle at center, #cbd5e1 9px, transparent 10px), /* Agujero */
+    linear-gradient(to bottom, #cbd5e1 15px, transparent 15px); /* Cuello */
+  background-size: 40px 45px, 4px 45px;
+  background-position: center 15px, center 0px;
+  background-repeat: repeat-x;
+  border-bottom: 2px solid rgba(0,0,0,0.05);
+}
+
+#job-board-container .sheet-title {
+  text-align: center;
+  color: #8C1D40; /* Color institucional */
+  font-weight: 800;
+  font-size: 1.2rem !important;
+  line-height: 1.2 !important;
+  margin: 20px 0 10px 0 !important;
+  text-transform: uppercase;
+}
+
+/* --- CUERPO Y LÍNEAS (LA SOLUCIÓN AL PROBLEMA) --- */
+#job-board-container .sheet-body {
+  /* Fondo rayado aplicado al contenedor */
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent calc(var(--line-height) - 1px),
+    #94a3b8 calc(var(--line-height) - 1px),
+    #94a3b8 var(--line-height)
+  );
+  background-position: 0 0;
+  /* Padding lateral ajustado */
+  padding: 0 30px 40px 30px;
+}
+
+/* REINICIO DE LISTAS (ANTI-TEMAS DE WORDPRESS) */
+#job-board-container ol.ruled-list {
+  margin: 0 !important;
+  padding: 0 !important; /* Eliminamos el padding por defecto de Kadence */
+  list-style: none !important;
+  counter-reset: item-counter;
+}
+
+#job-board-container ol.ruled-list li {
+  /* Alineación matemática estricta */
+  line-height: var(--line-height) !important;
+  font-size: var(--font-size) !important;
+  margin: 0 !important;
+  padding: 0 0 0 35px !important; /* Solo padding izquierdo para el número */
+  position: relative;
+  color: #334155;
+  text-align: justify;
+  counter-increment: item-counter;
+}
+
+/* Numeración Personalizada */
+#job-board-container ol.ruled-list li::before {
+  content: counter(item-counter) ".";
+  position: absolute;
+  left: 0;
+  width: 25px;
+  font-weight: 700;
+  text-align: right;
+  /* Colores rotativos */
+  color: #e11d48; 
+}
+#job-board-container ol.ruled-list li:nth-child(2n)::before { color: #d97706; }
+#job-board-container ol.ruled-list li:nth-child(3n)::before { color: #0891b2; }
+
+
+/* --- NUEVO ELEMENTO: POST-IT (CONTACTO) --- */
+#job-board-container .sticky-note {
+  width: 280px;
+  background-color: #fef08a; /* Amarillo Post-it */
+  padding: 30px 20px;
+  box-shadow: 5px 10px 15px rgba(0,0,0,0.2);
+  transform: rotate(4deg);
+  text-align: center;
+  position: relative;
+  align-self: center; /* Centrado verticalmente respecto a las otras notas */
+  font-family: 'Kalam', cursive; /* Fuente tipo manuscrita para el título */
+}
+
+/* Chincheta / Pin */
+#job-board-container .pin {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #ef4444;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+#job-board-container .sticky-note h3 {
+  font-family: 'Kalam', cursive;
+  font-size: 1.6rem !important;
+  color: #b45309;
+  margin: 10px 0 !important;
+  line-height: 1.1;
+}
+
+#job-board-container .sticky-note p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  color: #451a03;
+}
+
+#job-board-container .contact-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#job-board-container .action-btn {
+  display: block;
+  padding: 10px 15px;
+  border-radius: 30px;
+  text-decoration: none !important;
+  font-weight: 700;
+  color: white !important;
+  font-size: 0.9rem;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#job-board-container .action-btn:hover {
+  transform: translateY(-2px);
+}
+
+#job-board-container .whatsapp { background-color: #25d366; }
+#job-board-container .phone { background-color: #3b82f6; }
+
+
+/* --- RESPONSIVIDAD --- */
+@media (max-width: 768px) {
+  #job-board-container { padding: 20px 10px; gap: 30px; }
+  #job-board-container .paper-sheet { max-width: 100%; transform: none !important; margin-top: 0 !important; }
+  #job-board-container .sticky-note { width: 90%; transform: rotate(0deg); }
+}
