@@ -1,144 +1,195 @@
 <style>
-/* Importar fuente directamente en el CSS para independencia total */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+/* RESET DE FUENTES E IMPORTACIONES */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Kalam:wght@700&display=swap');
 
-#job-portal-v3 {
+/* --- CONTENEDOR PRINCIPAL --- */
+#job-board-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
-  padding: 40px 10px;
-  --line-height: 32px;
-  --color-vino: #8C1D40;
+  align-items: flex-start; /* Alineación superior */
+  gap: 40px;
+  padding: 50px 20px;
+  background: transparent;
+  font-family: 'Montserrat', sans-serif;
+  /* Variables Globales para Ajuste Perfecto */
+  --line-height: 32px; 
+  --font-size: 16px; /* Fijo para evitar desajustes */
+  --paper-width: 380px;
 }
 
-#job-portal-v3 .note-paper {
+/* --- ESTILOS DE LAS HOJAS (NOTAS) --- */
+#job-board-container .paper-sheet {
   width: 100%;
-  max-width: 400px;
-  min-height: 520px;
+  max-width: var(--paper-width);
+  min-height: 500px;
+  background-color: #fff;
   position: relative;
-  box-shadow: 10px 10px 25px rgba(0,0,0,0.1);
-  font-family: 'Montserrat', sans-serif !important;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.15);
   border-radius: 2px;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  overflow: hidden;
-  background-color: white;
+  transition: transform 0.3s ease;
 }
 
-/* Animación Hover */
-#job-portal-v3 .note-paper:hover {
-  transform: scale(1.03) rotate(0deg) !important;
+#job-board-container .paper-sheet:hover {
+  transform: scale(1.02) rotate(0deg) !important;
   z-index: 10;
-  box-shadow: 15px 20px 35px rgba(0,0,0,0.15);
 }
 
-#job-portal-v3 .note-blue { background-color: #f4f7f8; }
-#job-portal-v3 .note-cream { background-color: #fffef2; }
+/* Colores de Notas */
+#job-board-container .sheet-blue { background-color: #f0f4f8; }
+#job-board-container .sheet-cream { background-color: #fffdf0; }
 
-#job-portal-v3 .rotate-L { transform: rotate(-2deg); }
-#job-portal-v3 .rotate-R { transform: rotate(1.5deg); margin-top: 20px; }
+/* Rotaciones */
+#job-board-container .rotate-left { transform: rotate(-2deg); }
+#job-board-container .rotate-right { transform: rotate(2deg); margin-top: 20px; }
 
-/* Perforaciones */
-#job-portal-v3 .perforations {
+/* --- ENCABEZADO Y PERFORACIONES --- */
+#job-board-container .sheet-header {
+  position: relative;
+  padding-bottom: 10px;
+}
+
+#job-board-container .holes-row {
   height: 50px;
   background-image: 
-    radial-gradient(circle at center, #d1d8e0 9px, transparent 10px),
-    linear-gradient(to bottom, #d1d8e0 15px, transparent 15px);
-  background-size: 40px 40px, 4px 40px;
+    radial-gradient(circle at center, #cbd5e1 9px, transparent 10px), /* Agujero */
+    linear-gradient(to bottom, #cbd5e1 15px, transparent 15px); /* Cuello */
+  background-size: 40px 45px, 4px 45px;
   background-position: center 15px, center 0px;
   background-repeat: repeat-x;
+  border-bottom: 2px solid rgba(0,0,0,0.05);
 }
 
-#job-portal-v3 .note-title {
-  color: var(--color-vino);
+#job-board-container .sheet-title {
   text-align: center;
-  font-size: 1.1rem;
+  color: #8C1D40; /* Color institucional */
   font-weight: 800;
-  margin: 10px 0;
-  padding: 0 15px;
+  font-size: 1.2rem !important;
+  line-height: 1.2 !important;
+  margin: 20px 0 10px 0 !important;
+  text-transform: uppercase;
 }
 
-/* Cuerpo y Líneas */
-#job-portal-v3 .note-body {
+/* --- CUERPO Y LÍNEAS (LA SOLUCIÓN AL PROBLEMA) --- */
+#job-board-container .sheet-body {
+  /* Fondo rayado aplicado al contenedor */
   background-image: repeating-linear-gradient(
     transparent,
     transparent calc(var(--line-height) - 1px),
-    #d1dce0 calc(var(--line-height) - 1px),
-    #d1dce0 var(--line-height)
+    #94a3b8 calc(var(--line-height) - 1px),
+    #94a3b8 var(--line-height)
   );
-  padding: 0 30px 20px 30px;
+  background-position: 0 0;
+  /* Padding lateral ajustado */
+  padding: 0 30px 40px 30px;
 }
 
-#job-portal-v3 .lined-list-v3 {
-  list-style: none;
-  counter-reset: note-counter;
-  margin: 0; padding: 0;
+/* REINICIO DE LISTAS (ANTI-KADENCE) */
+#job-board-container ol.ruled-list {
+  margin: 0 !important;
+  padding: 0 !important; /* Eliminamos el padding por defecto de Kadence */
+  list-style: none !important;
+  counter-reset: item-counter;
 }
 
-#job-portal-v3 .lined-list-v3 li {
-  line-height: var(--line-height);
-  padding-left: 35px;
+#job-board-container ol.ruled-list li {
+  /* Alineación matemática estricta */
+  line-height: var(--line-height) !important;
+  font-size: var(--font-size) !important;
+  margin: 0 !important;
+  padding: 0 0 0 35px !important; /* Solo padding izquierdo para el número */
   position: relative;
-  counter-increment: note-counter;
-  font-size: 0.95rem;
+  color: #334155;
+  text-align: justify;
+  counter-increment: item-counter;
 }
 
-#job-portal-v3 .lined-list-v3 li::before {
-  content: counter(note-counter) ".";
-  position: absolute; left: 0; font-weight: 800;
+/* Numeración Personalizada */
+#job-board-container ol.ruled-list li::before {
+  content: counter(item-counter) ".";
+  position: absolute;
+  left: 0;
+  width: 25px;
+  font-weight: 700;
+  text-align: right;
+  /* Colores rotativos */
+  color: #e11d48; 
 }
+#job-board-container ol.ruled-list li:nth-child(2n)::before { color: #d97706; }
+#job-board-container ol.ruled-list li:nth-child(3n)::before { color: #0891b2; }
 
-/* Colores de números */
-#job-portal-v3 .lined-list-v3 li:nth-child(3n+1)::before { color: #FFC312; }
-#job-portal-v3 .lined-list-v3 li:nth-child(3n+2)::before { color: #EA2027; }
-#job-portal-v3 .lined-list-v3 li:nth-child(3n+0)::before { color: #1289A7; }
 
-/* --- SECCIÓN DE BOTONES --- */
-#job-portal-v3 .note-footer {
-  margin-top: 20px;
+/* --- NUEVO ELEMENTO: POST-IT (CONTACTO) --- */
+#job-board-container .sticky-note {
+  width: 280px;
+  background-color: #fef08a; /* Amarillo Post-it */
+  padding: 30px 20px;
+  box-shadow: 5px 10px 15px rgba(0,0,0,0.2);
+  transform: rotate(4deg);
   text-align: center;
-  border-top: 1px dashed #d1dce0;
-  padding-top: 15px;
+  position: relative;
+  align-self: center; /* Centrado verticalmente respecto a las otras notas */
+  font-family: 'Kalam', cursive; /* Fuente tipo manuscrita para el título */
 }
 
-#job-portal-v3 .contact-label {
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: #7f8c8d;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-}
-
-#job-portal-v3 .action-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-#job-portal-v3 .btn-apply {
-  width: 50px;
-  height: 50px;
+/* Chincheta / Pin */
+#job-board-container .pin {
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
+  background-color: #ef4444;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+#job-board-container .sticky-note h3 {
+  font-family: 'Kalam', cursive;
+  font-size: 1.6rem !important;
+  color: #b45309;
+  margin: 10px 0 !important;
+  line-height: 1.1;
+}
+
+#job-board-container .sticky-note p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  color: #451a03;
+}
+
+#job-board-container .contact-actions {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: white;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  flex-direction: column;
+  gap: 10px;
 }
 
-#job-portal-v3 .btn-whatsapp { background-color: #25d366; }
-#job-portal-v3 .btn-phone { background-color: #3498db; }
-
-#job-portal-v3 .btn-apply:hover {
-  transform: translateY(-5px) scale(1.1);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+#job-board-container .action-btn {
+  display: block;
+  padding: 10px 15px;
+  border-radius: 30px;
+  text-decoration: none !important;
+  font-weight: 700;
+  color: white !important;
+  font-size: 0.9rem;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* Responsividad */
+#job-board-container .action-btn:hover {
+  transform: translateY(-2px);
+}
+
+#job-board-container .whatsapp { background-color: #25d366; }
+#job-board-container .phone { background-color: #3b82f6; }
+
+
+/* --- RESPONSIVIDAD --- */
 @media (max-width: 768px) {
-  #job-portal-v3 .note-paper { transform: none !important; margin-top: 0 !important; max-width: 100%; }
+  #job-board-container { padding: 20px 10px; gap: 30px; }
+  #job-board-container .paper-sheet { max-width: 100%; transform: none !important; margin-top: 0 !important; }
+  #job-board-container .sticky-note { width: 90%; transform: rotate(0deg); }
 }
 </style>
