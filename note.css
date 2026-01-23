@@ -1,0 +1,140 @@
+<style>
+  :root {
+    --line-height-v3: 32px; /* Altura exacta del renglón */
+    --font-formal: 'Montserrat', sans-serif;
+    /* Colores de numeración */
+    --color-num-1: #FFC312; /* Amarillo */
+    --color-num-2: #EA2027; /* Rojo */
+    --color-num-3: #1289A7; /* Azul Turquesa */
+  }
+
+  /* Contenedor Principal */
+  .job-container-v3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px 10px;
+    background: transparent;
+  }
+
+  /* La Nota */
+  .note-paper {
+    width: 100%;
+    max-width: 420px;
+    min-height: 500px;
+    background-color: white;
+    position: relative;
+    box-shadow: 10px 10px 25px rgba(0,0,0,0.1);
+    font-family: var(--font-formal);
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  /* Animación al pasar el cursor o tocar */
+  .note-paper:hover {
+    transform: scale(1.05) rotate(0deg) !important;
+    z-index: 10;
+    box-shadow: 15px 15px 35px rgba(0,0,0,0.15);
+  }
+
+  /* Colores de las notas */
+  .note-blue { background-color: #f4f7f8; }
+  .note-cream { background-color: #fffef2; }
+
+  /* Rotaciones iniciales */
+  .rotate-L { transform: rotate(-2deg); }
+  .rotate-R { transform: rotate(1.5deg); margin-top: 20px; }
+
+  /* --- Perforaciones Definidas (Estilo Carpeta) --- */
+  .note-header {
+    padding-bottom: 10px;
+    position: relative;
+  }
+
+  .perforations {
+    height: 50px;
+    width: 100%;
+    /* Diseño de círculo + cuello */
+    background-image: 
+      radial-gradient(circle at center, #d1d8e0 9px, transparent 10px),
+      linear-gradient(to bottom, #d1d8e0 15px, transparent 15px);
+    background-size: 40px 40px, 4px 40px;
+    background-position: center 15px, center 0px;
+    background-repeat: repeat-x;
+  }
+
+  .note-title {
+    color: #8C1D40;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin: 15px 0 5px 0;
+    line-height: 1.2;
+    padding: 0 20px;
+  }
+
+  /* --- El Cuerpo Rayado (Ajuste de Texto) --- */
+  .note-body {
+    /* Las líneas solo aparecen aquí */
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent calc(var(--line-height-v3) - 1px),
+      #d1dce0 calc(var(--line-height-v3) - 1px),
+      #d1dce0 var(--line-height-v3)
+    );
+    background-position: 0 0;
+    padding: 0 25px 40px 15px; /* Espacio simétrico lateral */
+  }
+
+  .lined-list-v3 {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: note-counter;
+  }
+
+  .lined-list-v3 li {
+    line-height: var(--line-height-v3);
+    font-size: 0.95rem;
+    color: #333;
+    padding-left: 35px; /* Espacio para el número */
+    position: relative;
+    counter-increment: note-counter;
+    text-align: justify; /* Distribución de texto profesional */
+  }
+
+  /* Numeración con 3 colores */
+  .lined-list-v3 li::before {
+    content: counter(note-counter) ".";
+    position: absolute;
+    left: 0;
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+
+  /* Lógica de colores (Ciclo de 3) */
+  .lined-list-v3 li:nth-child(3n+1)::before { color: var(--color-num-1); }
+  .lined-list-v3 li:nth-child(3n+2)::before { color: var(--color-num-2); }
+  .lined-list-v3 li:nth-child(3n+0)::before { color: var(--color-num-3); }
+
+  /* Esquina doblada */
+  .note-paper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-width: 0 0 30px 30px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0,0,0,0.07) transparent;
+  }
+
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .note-paper { max-width: 100%; transform: none !important; margin-top: 0 !important; }
+    .note-body { padding: 0 20px 30px 20px; }
+    .lined-list-v3 li { font-size: 0.9rem; }
+  }
+</style>
