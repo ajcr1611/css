@@ -1,0 +1,127 @@
+/* --- Variables de Color (para fácil personalización) --- */
+:root {
+  --phone-bg-color: #f8f9fa; /* Color de fondo de los items */
+  --phone-border-color: #343a40; /* Borde del 'smartphone' */
+  --text-primary-color: #212529; /* Color del nombre del servicio */
+  --text-secondary-color: #495057; /* Color del número */
+  --main-brand-color: #8c1d40; /* Color vino del encabezado */
+}
+
+/* --- Contenedor principal del Smartphone --- */
+.emergency-phone-container {
+  max-width: 450px; /* Ancho máximo, como un teléfono real */
+  margin: 2rem auto; /* Centrado en la página */
+  border: 12px solid var(--phone-border-color);
+  border-radius: 40px; /* Bordes redondeados de smartphone */
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  padding: 20px 10px;
+  position: relative;
+  overflow: hidden;
+  /* DESCOMENTA LA LÍNEA DE ABAJO SI TIENES UNA IMAGEN DE SMARTPHONE */
+  /* background-image: url('URL_DE_TU_IMAGEN_DE_SMARTPHONE.PNG'); */
+  /* background-size: cover; */
+  /* background-position: center; */
+}
+
+/* --- Encabezado dentro del 'teléfono' --- */
+.phone-header {
+  background-color: var(--main-brand-color);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin: -20px -10px 20px -10px; /* Se expande para tocar los bordes */
+}
+.phone-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+}
+.phone-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: white;
+}
+
+
+/* --- Lista de números --- */
+.emergency-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.emergency-list li {
+  margin-bottom: 15px;
+}
+
+/* --- Cada item clicleable --- */
+.emergency-link {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: var(--phone-bg-color);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e9ecef;
+}
+
+/* Efecto hover para UX */
+.emergency-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* --- Contenedor del ícono --- */
+.icon-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.icon-container .fas {
+  color: white;
+  font-size: 1.4rem;
+}
+
+/* --- Contenedor del texto --- */
+.text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-name {
+  color: var(--text-primary-color);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.phone-number {
+  color: var(--text-secondary-color);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* --- Diseño Responsivo (Mobile First) --- */
+@media (max-width: 500px) {
+  .emergency-phone-container {
+    /* Ocupa casi todo el ancho, sin bordes tan gruesos */
+    margin: 1rem 0;
+    border-width: 8px;
+    border-radius: 30px;
+  }
+  .service-name {
+    font-size: 0.8rem; /* Texto un poco más pequeño */
+  }
+  .phone-number {
+    font-size: 1.1rem; /* Número un poco más pequeño */
+  }
+}
