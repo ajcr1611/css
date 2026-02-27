@@ -1,0 +1,180 @@
+:root {
+  --phone-border: #2d3436;
+  --phone-bg: #ffffff;
+  --brand-color: #8c1d40; /* Color Jocotitlán */
+  --brand-light: #f3f4f6;
+  --fb-blue: #1877f2;
+}
+
+/* El cuerpo del teléfono */
+.smartphone-mockup {
+  position: relative;
+  width: 100%;
+  max-width: 400px; /* Ancho realista de celular */
+  aspect-ratio: 9 / 19; /* Proporción moderna de pantalla */
+  margin: 2rem auto;
+  border: 14px solid var(--phone-border);
+  border-radius: 45px;
+  background-color: var(--phone-bg);
+  box-shadow: 
+    0 0 0 2px #4a4a4a, /* Borde exterior fino */
+    0 20px 50px rgba(0,0,0,0.2); /* Sombra 3D */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Notch superior estético */
+.phone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 25px;
+  background-color: var(--phone-border);
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.camera {
+  width: 8px;
+  height: 8px;
+  background: #111;
+  border-radius: 50%;
+}
+
+.speaker {
+  width: 40px;
+  height: 4px;
+  background: #333;
+  border-radius: 4px;
+}
+
+/* Pantalla interna */
+.phone-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #f0f2f5; /* Gris suave estilo FB */
+  padding-top: 25px; /* Espacio para el notch */
+}
+
+/* Header Personalizado (Branding) */
+.app-header {
+  background-color: #fff;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  z-index: 5;
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #555;
+  margin-bottom: 10px;
+  padding: 0 5px;
+  font-weight: 600;
+}
+
+.app-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-pic {
+  width: 38px;
+  height: 38px;
+  background-color: var(--brand-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.profile-text h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #050505;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.profile-text small {
+  font-size: 0.75rem;
+  color: #65676b;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #31a24c;
+  border-radius: 50%;
+  margin-right: 2px;
+}
+
+.fb-btn {
+  background-color: var(--fb-blue);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.fb-btn:hover {
+  opacity: 0.9;
+  color: white;
+}
+
+/* Wrapper del Iframe */
+.fb-content-wrapper {
+  flex: 1;
+  overflow: hidden; /* Importante para que no se salga */
+  position: relative;
+  background: white;
+}
+
+/* Truco CSS para forzar al iframe a llenar el contenedor */
+.fb-content-wrapper iframe, 
+.fb-page, 
+.fb-page span {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Navegación inferior falsa para realismo */
+.app-bottom-nav {
+  height: 50px;
+  background: white;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #65676b;
+  font-size: 1.2rem;
+}
+
+.nav-item.active {
+  color: var(--fb-blue);
+}
